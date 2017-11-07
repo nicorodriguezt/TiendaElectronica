@@ -18,6 +18,7 @@
     <Property Name="Mail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Telefono" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="presupuesto" Relationship="Self.fk_Presupuesto_Cliente" FromRole="cliente" ToRole="presupuesto" />
+    <NavigationProperty Name="usuario" Relationship="tiendaelectronicaModel.fk_idUsuario_Cliente1" FromRole="cliente" ToRole="usuario" />
   </EntityType>
   <EntityType Name="compatibilidad">
     <Key>
@@ -358,5 +359,59 @@
       <End Role="tipocomputadora" EntitySet="tipocomputadora" />
       <End Role="tipoxproducto" EntitySet="tipoxproducto" />
     </AssociationSet>
+    <EntitySet Name="tipodeusuario" EntityType="tiendaelectronicaModel.tipodeusuario" />
+    <EntitySet Name="usuario" EntityType="tiendaelectronicaModel.usuario" />
+    <AssociationSet Name="fk_idUsuario_Cliente1" Association="tiendaelectronicaModel.fk_idUsuario_Cliente1">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Usuario_TipoDeUsuario1" Association="tiendaelectronicaModel.fk_Usuario_TipoDeUsuario1">
+      <End Role="tipodeusuario" EntitySet="tipodeusuario" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="tipodeusuario">
+    <Key>
+      <PropertyRef Name="idTipoDeUsuario" />
+    </Key>
+    <Property Name="idTipoDeUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="usuario" Relationship="tiendaelectronicaModel.fk_Usuario_TipoDeUsuario1" FromRole="tipodeusuario" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTipoDeUsuario" Type="Int32" Nullable="false" />
+    <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="idCliente" Type="Int32" />
+    <NavigationProperty Name="cliente" Relationship="tiendaelectronicaModel.fk_idUsuario_Cliente1" FromRole="usuario" ToRole="cliente" />
+    <NavigationProperty Name="tipodeusuario" Relationship="tiendaelectronicaModel.fk_Usuario_TipoDeUsuario1" FromRole="usuario" ToRole="tipodeusuario" />
+  </EntityType>
+  <Association Name="fk_idUsuario_Cliente1">
+    <End Type="tiendaelectronicaModel.cliente" Role="cliente" Multiplicity="0..1" />
+    <End Type="tiendaelectronicaModel.usuario" Role="usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Usuario_TipoDeUsuario1">
+    <End Type="tiendaelectronicaModel.tipodeusuario" Role="tipodeusuario" Multiplicity="1" />
+    <End Type="tiendaelectronicaModel.usuario" Role="usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodeusuario">
+        <PropertyRef Name="idTipoDeUsuario" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="idTipoDeUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

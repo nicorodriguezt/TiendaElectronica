@@ -171,6 +171,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\lineapresupuestoesController.cs" />
     <Compile Include="Controllers\presupuestoesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -291,6 +292,11 @@
     <Content Include="Views\presupuestoes\Details.cshtml" />
     <Content Include="Views\presupuestoes\Edit.cshtml" />
     <Content Include="Views\presupuestoes\Index.cshtml" />
+    <Content Include="Views\lineapresupuestoes\Create.cshtml" />
+    <Content Include="Views\lineapresupuestoes\Delete.cshtml" />
+    <Content Include="Views\lineapresupuestoes\Details.cshtml" />
+    <Content Include="Views\lineapresupuestoes\Edit.cshtml" />
+    <Content Include="Views\lineapresupuestoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

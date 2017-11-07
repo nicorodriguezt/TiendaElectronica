@@ -93,6 +93,13 @@
     <Property Name="idTipoComputadora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="45" Nullable="false" />
   </EntityType>
+  <EntityType Name="tipodeusuario">
+    <Key>
+      <PropertyRef Name="idTipoDeUsuario" />
+    </Key>
+    <Property Name="idTipoDeUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
   <EntityType Name="tipoxproducto">
     <Key>
       <PropertyRef Name="idTipoXProducto" />
@@ -100,6 +107,16 @@
     <Property Name="idTipoXProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idTipoComputadora" Type="int" Nullable="false" />
     <Property Name="idProducto" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTipoDeUsuario" Type="int" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Contraseña" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="idCliente" Type="int" />
   </EntityType>
   <EntityType Name="venta">
     <Key>
@@ -194,6 +211,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_idUsuario_Cliente1">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+    <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_LineaPresupuesto_Presupuesto1">
     <End Role="presupuesto" Type="Self.presupuesto" Multiplicity="1" />
     <End Role="lineapresupuesto" Type="Self.lineapresupuesto" Multiplicity="*" />
@@ -254,6 +283,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_Usuario_TipoDeUsuario1">
+    <End Role="tipodeusuario" Type="Self.tipodeusuario" Multiplicity="1" />
+    <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodeusuario">
+        <PropertyRef Name="idTipoDeUsuario" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="idTipoDeUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_Venta_Presupuesto1">
     <End Role="presupuesto" Type="Self.presupuesto" Multiplicity="1" />
     <End Role="venta" Type="Self.venta" Multiplicity="*" />
@@ -278,7 +319,9 @@
     <EntitySet Name="producto" EntityType="Self.producto" Schema="tiendaelectronica" store:Type="Tables" />
     <EntitySet Name="tipocomponente" EntityType="Self.tipocomponente" Schema="tiendaelectronica" store:Type="Tables" />
     <EntitySet Name="tipocomputadora" EntityType="Self.tipocomputadora" Schema="tiendaelectronica" store:Type="Tables" />
+    <EntitySet Name="tipodeusuario" EntityType="Self.tipodeusuario" Schema="tiendaelectronica" store:Type="Tables" />
     <EntitySet Name="tipoxproducto" EntityType="Self.tipoxproducto" Schema="tiendaelectronica" store:Type="Tables" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="tiendaelectronica" store:Type="Tables" />
     <EntitySet Name="venta" EntityType="Self.venta" Schema="tiendaelectronica" store:Type="Tables" />
     <AssociationSet Name="fk_Compatibilidad_Caracteristica1" Association="Self.fk_Compatibilidad_Caracteristica1">
       <End Role="caracteristica" EntitySet="caracteristica" />
@@ -308,6 +351,10 @@
       <End Role="producto" EntitySet="producto" />
       <End Role="computadora" EntitySet="computadora" />
     </AssociationSet>
+    <AssociationSet Name="fk_idUsuario_Cliente1" Association="Self.fk_idUsuario_Cliente1">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
     <AssociationSet Name="fk_LineaPresupuesto_Presupuesto1" Association="Self.fk_LineaPresupuesto_Presupuesto1">
       <End Role="presupuesto" EntitySet="presupuesto" />
       <End Role="lineapresupuesto" EntitySet="lineapresupuesto" />
@@ -327,6 +374,10 @@
     <AssociationSet Name="fk_TipoXProducto_TipoComputadora1" Association="Self.fk_TipoXProducto_TipoComputadora1">
       <End Role="tipocomputadora" EntitySet="tipocomputadora" />
       <End Role="tipoxproducto" EntitySet="tipoxproducto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Usuario_TipoDeUsuario1" Association="Self.fk_Usuario_TipoDeUsuario1">
+      <End Role="tipodeusuario" EntitySet="tipodeusuario" />
+      <End Role="usuario" EntitySet="usuario" />
     </AssociationSet>
     <AssociationSet Name="fk_Venta_Presupuesto1" Association="Self.fk_Venta_Presupuesto1">
       <End Role="presupuesto" EntitySet="presupuesto" />

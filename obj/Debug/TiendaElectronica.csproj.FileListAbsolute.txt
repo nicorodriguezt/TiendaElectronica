@@ -54,3 +54,4 @@ C:\Users\Usuario\Source\Repos\TiendaElectronica\TiendaElectronica\bin\es\System.
 C:\Users\Usuario\Source\Repos\TiendaElectronica\TiendaElectronica\obj\Debug\TiendaElectronica.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\Source\Repos\TiendaElectronica\TiendaElectronica\obj\Debug\TiendaElectronica.dll
 C:\Users\Usuario\Source\Repos\TiendaElectronica\TiendaElectronica\obj\Debug\TiendaElectronica.pdb
+C:\Users\Usuario\Source\Repos\TiendaElectronica\TiendaElectronica\obj\Debug\TiendaElectronica.csprojResolveAssemblyReference.cache
