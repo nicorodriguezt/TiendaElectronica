@@ -1,0 +1,50 @@
+﻿@model TiendaElectronica.presupuesto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>presupuesto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PresupuestoNro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PresupuestoNro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRealizado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRealizado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliente.RazonSocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliente.RazonSocial)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idPresupuesto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
