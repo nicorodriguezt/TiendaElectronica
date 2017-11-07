@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="tiendaelectronicaModelStoreContainer" CdmEntityContainer="tiendaelectronicaEntities">
+    <EntitySetMapping Name="caracteristica">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.caracteristica">
+        <MappingFragment StoreEntitySet="caracteristica">
+          <ScalarProperty Name="idCaracteristica" ColumnName="idCaracteristica" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="Cuit" ColumnName="Cuit" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="compatibilidad">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.compatibilidad">
+        <MappingFragment StoreEntitySet="compatibilidad">
+          <ScalarProperty Name="idComponente" ColumnName="idComponente" />
+          <ScalarProperty Name="idCaracteristica" ColumnName="idCaracteristica" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="componente">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.componente">
+        <MappingFragment StoreEntitySet="componente">
+          <ScalarProperty Name="idComponente" ColumnName="idComponente" />
+          <ScalarProperty Name="idProductos" ColumnName="idProductos" />
+          <ScalarProperty Name="CantDisponible" ColumnName="CantDisponible" />
+          <ScalarProperty Name="idTipoComponente" ColumnName="idTipoComponente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="componentesxcomputadora">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.componentesxcomputadora">
+        <MappingFragment StoreEntitySet="componentesxcomputadora">
+          <ScalarProperty Name="idComponentesXComputadora" ColumnName="idComponentesXComputadora" />
+          <ScalarProperty Name="idComputadora" ColumnName="idComputadora" />
+          <ScalarProperty Name="idComponente" ColumnName="idComponente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="computadora">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.computadora">
+        <MappingFragment StoreEntitySet="computadora">
+          <ScalarProperty Name="idComputadora" ColumnName="idComputadora" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lineapresupuesto">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.lineapresupuesto">
+        <MappingFragment StoreEntitySet="lineapresupuesto">
+          <ScalarProperty Name="idLineaPresupuesto" ColumnName="idLineaPresupuesto" />
+          <ScalarProperty Name="idPresupuesto" ColumnName="idPresupuesto" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="PrecioUnit" ColumnName="PrecioUnit" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="presupuesto">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.presupuesto">
+        <MappingFragment StoreEntitySet="presupuesto">
+          <ScalarProperty Name="idPresupuesto" ColumnName="idPresupuesto" />
+          <ScalarProperty Name="PresupuestoNro" ColumnName="PresupuestoNro" />
+          <ScalarProperty Name="FechaRealizado" ColumnName="FechaRealizado" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="producto">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.producto">
+        <MappingFragment StoreEntitySet="producto">
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="TipoProducto" ColumnName="TipoProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipocomponente">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.tipocomponente">
+        <MappingFragment StoreEntitySet="tipocomponente">
+          <ScalarProperty Name="idTipoComponente" ColumnName="idTipoComponente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipocomputadora">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.tipocomputadora">
+        <MappingFragment StoreEntitySet="tipocomputadora">
+          <ScalarProperty Name="idTipoComputadora" ColumnName="idTipoComputadora" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoxproducto">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.tipoxproducto">
+        <MappingFragment StoreEntitySet="tipoxproducto">
+          <ScalarProperty Name="idTipoXProducto" ColumnName="idTipoXProducto" />
+          <ScalarProperty Name="idTipoComputadora" ColumnName="idTipoComputadora" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="venta">
+      <EntityTypeMapping TypeName="tiendaelectronicaModel.venta">
+        <MappingFragment StoreEntitySet="venta">
+          <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+          <ScalarProperty Name="FechaVenta" ColumnName="FechaVenta" />
+          <ScalarProperty Name="IdPresupuesto" ColumnName="IdPresupuesto" />
+          <ScalarProperty Name="FacturaNro" ColumnName="FacturaNro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8a5c7c64a02f44e0a2fb06ea44acf51f" Name="Diagram1">
+        <EntityTypeShape EntityType="tiendaelectronicaModel.caracteristica" Width="1.5" PointX="5" PointY="3.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.cliente" Width="1.5" PointX="7.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.compatibilidad" Width="1.5" PointX="5.125" PointY="4" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.componente" Width="1.5" PointX="4.625" PointY="4.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.componentesxcomputadora" Width="1.5" PointX="7.75" PointY="5.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.computadora" Width="1.5" PointX="2.75" PointY="5.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.lineapresupuesto" Width="1.5" PointX="1.75" PointY="6.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.presupuesto" Width="1.5" PointX="4.875" PointY="6.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.producto" Width="1.5" PointX="0.5" PointY="5.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.tipocomponente" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.tipocomputadora" Width="1.5" PointX="3" PointY="3.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.tipoxproducto" Width="1.5" PointX="3" PointY="4" IsExpanded="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.venta" Width="1.5" PointX="7.125" PointY="6.25" IsExpanded="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_Compatibilidad_Caracteristica1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_Presupuesto_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_Compatibilidad_Componente1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_Componente_TipoComponente1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_Componentes_Producto1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_ComponentesXComputadora_Componentes1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_ComponentesXComputadora_Computadora1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_Computadora_Producto1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_LineaPresupuesto_Presupuesto1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_LineaPresupuesto_Producto1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_Venta_Presupuesto1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_TipoXProducto_Producto1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_TipoXProducto_TipoComputadora1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.tipodeusuario" Width="1.5" PointX="7.75" PointY="10.375" />
+        <EntityTypeShape EntityType="tiendaelectronicaModel.usuario" Width="1.5" PointX="10" PointY="7" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_idUsuario_Cliente1" />
+        <AssociationConnector Association="tiendaelectronicaModel.fk_Usuario_TipoDeUsuario1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tiendaelectronicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="caracteristica">
+    <Key>
+      <PropertyRef Name="idCaracteristica" />
+    </Key>
+    <Property Name="idCaracteristica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="compatibilidad" Relationship="Self.fk_Compatibilidad_Caracteristica1" FromRole="caracteristica" ToRole="compatibilidad" />
+  </EntityType>
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="idCliente" />
+    </Key>
+    <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RazonSocial" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cuit" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="presupuesto" Relationship="Self.fk_Presupuesto_Cliente" FromRole="cliente" ToRole="presupuesto" />
+  </EntityType>
+  <EntityType Name="compatibilidad">
+    <Key>
+      <PropertyRef Name="idComponente" />
+      <PropertyRef Name="idCaracteristica" />
+    </Key>
+    <Property Name="idComponente" Type="Int32" Nullable="false" />
+    <Property Name="idCaracteristica" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="caracteristica" Relationship="Self.fk_Compatibilidad_Caracteristica1" FromRole="compatibilidad" ToRole="caracteristica" />
+    <NavigationProperty Name="componente" Relationship="Self.fk_Compatibilidad_Componente1" FromRole="compatibilidad" ToRole="componente" />
+  </EntityType>
+  <EntityType Name="componente">
+    <Key>
+      <PropertyRef Name="idComponente" />
+    </Key>
+    <Property Name="idComponente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idProductos" Type="Int32" Nullable="false" />
+    <Property Name="CantDisponible" Type="Int32" Nullable="false" />
+    <Property Name="idTipoComponente" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="compatibilidad" Relationship="Self.fk_Compatibilidad_Componente1" FromRole="componente" ToRole="compatibilidad" />
+    <NavigationProperty Name="tipocomponente" Relationship="Self.fk_Componente_TipoComponente1" FromRole="componente" ToRole="tipocomponente" />
+    <NavigationProperty Name="producto" Relationship="Self.fk_Componentes_Producto1" FromRole="componente" ToRole="producto" />
+    <NavigationProperty Name="componentesxcomputadora" Relationship="Self.fk_ComponentesXComputadora_Componentes1" FromRole="componente" ToRole="componentesxcomputadora" />
+  </EntityType>
+  <EntityType Name="componentesxcomputadora">
+    <Key>
+      <PropertyRef Name="idComponentesXComputadora" />
+    </Key>
+    <Property Name="idComponentesXComputadora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idComputadora" Type="Int32" Nullable="false" />
+    <Property Name="idComponente" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="componente" Relationship="Self.fk_ComponentesXComputadora_Componentes1" FromRole="componentesxcomputadora" ToRole="componente" />
+    <NavigationProperty Name="computadora" Relationship="Self.fk_ComponentesXComputadora_Computadora1" FromRole="componentesxcomputadora" ToRole="computadora" />
+  </EntityType>
+  <EntityType Name="computadora">
+    <Key>
+      <PropertyRef Name="idComputadora" />
+    </Key>
+    <Property Name="idComputadora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="componentesxcomputadora" Relationship="Self.fk_ComponentesXComputadora_Computadora1" FromRole="computadora" ToRole="componentesxcomputadora" />
+    <NavigationProperty Name="producto" Relationship="Self.fk_Computadora_Producto1" FromRole="computadora" ToRole="producto" />
+  </EntityType>
+  <EntityType Name="lineapresupuesto">
+    <Key>
+      <PropertyRef Name="idLineaPresupuesto" />
+    </Key>
+    <Property Name="idLineaPresupuesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPresupuesto" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="PrecioUnit" Type="Double" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="presupuesto" Relationship="Self.fk_LineaPresupuesto_Presupuesto1" FromRole="lineapresupuesto" ToRole="presupuesto" />
+    <NavigationProperty Name="producto" Relationship="Self.fk_LineaPresupuesto_Producto1" FromRole="lineapresupuesto" ToRole="producto" />
+  </EntityType>
+  <EntityType Name="presupuesto">
+    <Key>
+      <PropertyRef Name="idPresupuesto" />
+    </Key>
+    <Property Name="idPresupuesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PresupuestoNro" Type="Int32" Nullable="false" />
+    <Property Name="FechaRealizado" Type="DateTime" Nullable="false" />
+    <Property Name="FechaFin" Type="DateTime" Nullable="false" />
+    <Property Name="IdCliente" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cliente" Relationship="Self.fk_Presupuesto_Cliente" FromRole="presupuesto" ToRole="cliente" />
+    <NavigationProperty Name="lineapresupuesto" Relationship="Self.fk_LineaPresupuesto_Presupuesto1" FromRole="presupuesto" ToRole="lineapresupuesto" />
+    <NavigationProperty Name="venta" Relationship="Self.fk_Venta_Presupuesto1" FromRole="presupuesto" ToRole="venta" />
+  </EntityType>
+  <EntityType Name="producto">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Precio" Type="Double" Nullable="false" />
+    <Property Name="TipoProducto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="componente" Relationship="Self.fk_Componentes_Producto1" FromRole="producto" ToRole="componente" />
+    <NavigationProperty Name="computadora" Relationship="Self.fk_Computadora_Producto1" FromRole="producto" ToRole="computadora" />
+    <NavigationProperty Name="lineapresupuesto" Relationship="Self.fk_LineaPresupuesto_Producto1" FromRole="producto" ToRole="lineapresupuesto" />
+    <NavigationProperty Name="tipoxproducto" Relationship="Self.fk_TipoXProducto_Producto1" FromRole="producto" ToRole="tipoxproducto" />
+  </EntityType>
+  <EntityType Name="tipocomponente">
+    <Key>
+      <PropertyRef Name="idTipoComponente" />
+    </Key>
+    <Property Name="idTipoComponente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="componente" Relationship="Self.fk_Componente_TipoComponente1" FromRole="tipocomponente" ToRole="componente" />
+  </EntityType>
+  <EntityType Name="tipocomputadora">
+    <Key>
+      <PropertyRef Name="idTipoComputadora" />
+    </Key>
+    <Property Name="idTipoComputadora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tipoxproducto" Relationship="Self.fk_TipoXProducto_TipoComputadora1" FromRole="tipocomputadora" ToRole="tipoxproducto" />
+  </EntityType>
+  <EntityType Name="tipoxproducto">
+    <Key>
+      <PropertyRef Name="idTipoXProducto" />
+    </Key>
+    <Property Name="idTipoXProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTipoComputadora" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="producto" Relationship="Self.fk_TipoXProducto_Producto1" FromRole="tipoxproducto" ToRole="producto" />
+    <NavigationProperty Name="tipocomputadora" Relationship="Self.fk_TipoXProducto_TipoComputadora1" FromRole="tipoxproducto" ToRole="tipocomputadora" />
+  </EntityType>
+  <EntityType Name="venta">
+    <Key>
+      <PropertyRef Name="idVenta" />
+    </Key>
+    <Property Name="idVenta" Type="Int32" Nullable="false" />
+    <Property Name="FechaVenta" Type="DateTime" Nullable="false" />
+    <Property Name="IdPresupuesto" Type="Int32" Nullable="false" />
+    <Property Name="FacturaNro" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="presupuesto" Relationship="Self.fk_Venta_Presupuesto1" FromRole="venta" ToRole="presupuesto" />
+  </EntityType>
+  <Association Name="fk_Compatibilidad_Caracteristica1">
+    <End Role="caracteristica" Type="Self.caracteristica" Multiplicity="1" />
+    <End Role="compatibilidad" Type="Self.compatibilidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="caracteristica">
+        <PropertyRef Name="idCaracteristica" />
+      </Principal>
+      <Dependent Role="compatibilidad">
+        <PropertyRef Name="idCaracteristica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Presupuesto_Cliente">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="presupuesto" Type="Self.presupuesto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="presupuesto">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Compatibilidad_Componente1">
+    <End Role="componente" Type="Self.componente" Multiplicity="1" />
+    <End Role="compatibilidad" Type="Self.compatibilidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="componente">
+        <PropertyRef Name="idComponente" />
+      </Principal>
+      <Dependent Role="compatibilidad">
+        <PropertyRef Name="idComponente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Componente_TipoComponente1">
+    <End Role="tipocomponente" Type="Self.tipocomponente" Multiplicity="1" />
+    <End Role="componente" Type="Self.componente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipocomponente">
+        <PropertyRef Name="idTipoComponente" />
+      </Principal>
+      <Dependent Role="componente">
+        <PropertyRef Name="idTipoComponente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Componentes_Producto1">
+    <End Role="producto" Type="Self.producto" Multiplicity="1" />
+    <End Role="componente" Type="Self.componente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="componente">
+        <PropertyRef Name="idProductos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ComponentesXComputadora_Componentes1">
+    <End Role="componente" Type="Self.componente" Multiplicity="1" />
+    <End Role="componentesxcomputadora" Type="Self.componentesxcomputadora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="componente">
+        <PropertyRef Name="idComponente" />
+      </Principal>
+      <Dependent Role="componentesxcomputadora">
+        <PropertyRef Name="idComponente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ComponentesXComputadora_Computadora1">
+    <End Role="computadora" Type="Self.computadora" Multiplicity="1" />
+    <End Role="componentesxcomputadora" Type="Self.componentesxcomputadora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="computadora">
+        <PropertyRef Name="idComputadora" />
+      </Principal>
+      <Dependent Role="componentesxcomputadora">
+        <PropertyRef Name="idComputadora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Computadora_Producto1">
+    <End Role="producto" Type="Self.producto" Multiplicity="1" />
+    <End Role="computadora" Type="Self.computadora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="computadora">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_LineaPresupuesto_Presupuesto1">
+    <End Role="presupuesto" Type="Self.presupuesto" Multiplicity="1" />
+    <End Role="lineapresupuesto" Type="Self.lineapresupuesto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="presupuesto">
+        <PropertyRef Name="idPresupuesto" />
+      </Principal>
+      <Dependent Role="lineapresupuesto">
+        <PropertyRef Name="idPresupuesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_LineaPresupuesto_Producto1">
+    <End Role="producto" Type="Self.producto" Multiplicity="1" />
+    <End Role="lineapresupuesto" Type="Self.lineapresupuesto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="lineapresupuesto">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Venta_Presupuesto1">
+    <End Role="presupuesto" Type="Self.presupuesto" Multiplicity="1" />
+    <End Role="venta" Type="Self.venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="presupuesto">
+        <PropertyRef Name="idPresupuesto" />
+      </Principal>
+      <Dependent Role="venta">
+        <PropertyRef Name="IdPresupuesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TipoXProducto_Producto1">
+    <End Role="producto" Type="Self.producto" Multiplicity="1" />
+    <End Role="tipoxproducto" Type="Self.tipoxproducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="tipoxproducto">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TipoXProducto_TipoComputadora1">
+    <End Role="tipocomputadora" Type="Self.tipocomputadora" Multiplicity="1" />
+    <End Role="tipoxproducto" Type="Self.tipoxproducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipocomputadora">
+        <PropertyRef Name="idTipoComputadora" />
+      </Principal>
+      <Dependent Role="tipoxproducto">
+        <PropertyRef Name="idTipoComputadora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="tiendaelectronicaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="caracteristica" EntityType="Self.caracteristica" />
+    <EntitySet Name="cliente" EntityType="Self.cliente" />
+    <EntitySet Name="compatibilidad" EntityType="Self.compatibilidad" />
+    <EntitySet Name="componente" EntityType="Self.componente" />
+    <EntitySet Name="componentesxcomputadora" EntityType="Self.componentesxcomputadora" />
+    <EntitySet Name="computadora" EntityType="Self.computadora" />
+    <EntitySet Name="lineapresupuesto" EntityType="Self.lineapresupuesto" />
+    <EntitySet Name="presupuesto" EntityType="Self.presupuesto" />
+    <EntitySet Name="producto" EntityType="Self.producto" />
+    <EntitySet Name="tipocomponente" EntityType="Self.tipocomponente" />
+    <EntitySet Name="tipocomputadora" EntityType="Self.tipocomputadora" />
+    <EntitySet Name="tipoxproducto" EntityType="Self.tipoxproducto" />
+    <EntitySet Name="venta" EntityType="Self.venta" />
+    <AssociationSet Name="fk_Compatibilidad_Caracteristica1" Association="Self.fk_Compatibilidad_Caracteristica1">
+      <End Role="caracteristica" EntitySet="caracteristica" />
+      <End Role="compatibilidad" EntitySet="compatibilidad" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Presupuesto_Cliente" Association="Self.fk_Presupuesto_Cliente">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="presupuesto" EntitySet="presupuesto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Compatibilidad_Componente1" Association="Self.fk_Compatibilidad_Componente1">
+      <End Role="componente" EntitySet="componente" />
+      <End Role="compatibilidad" EntitySet="compatibilidad" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Componente_TipoComponente1" Association="Self.fk_Componente_TipoComponente1">
+      <End Role="tipocomponente" EntitySet="tipocomponente" />
+      <End Role="componente" EntitySet="componente" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Componentes_Producto1" Association="Self.fk_Componentes_Producto1">
+      <End Role="producto" EntitySet="producto" />
+      <End Role="componente" EntitySet="componente" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ComponentesXComputadora_Componentes1" Association="Self.fk_ComponentesXComputadora_Componentes1">
+      <End Role="componente" EntitySet="componente" />
+      <End Role="componentesxcomputadora" EntitySet="componentesxcomputadora" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ComponentesXComputadora_Computadora1" Association="Self.fk_ComponentesXComputadora_Computadora1">
+      <End Role="computadora" EntitySet="computadora" />
+      <End Role="componentesxcomputadora" EntitySet="componentesxcomputadora" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Computadora_Producto1" Association="Self.fk_Computadora_Producto1">
+      <End Role="producto" EntitySet="producto" />
+      <End Role="computadora" EntitySet="computadora" />
+    </AssociationSet>
+    <AssociationSet Name="fk_LineaPresupuesto_Presupuesto1" Association="Self.fk_LineaPresupuesto_Presupuesto1">
+      <End Role="presupuesto" EntitySet="presupuesto" />
+      <End Role="lineapresupuesto" EntitySet="lineapresupuesto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_LineaPresupuesto_Producto1" Association="Self.fk_LineaPresupuesto_Producto1">
+      <End Role="producto" EntitySet="producto" />
+      <End Role="lineapresupuesto" EntitySet="lineapresupuesto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Venta_Presupuesto1" Association="Self.fk_Venta_Presupuesto1">
+      <End Role="presupuesto" EntitySet="presupuesto" />
+      <End Role="venta" EntitySet="venta" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TipoXProducto_Producto1" Association="Self.fk_TipoXProducto_Producto1">
+      <End Role="producto" EntitySet="producto" />
+      <End Role="tipoxproducto" EntitySet="tipoxproducto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TipoXProducto_TipoComputadora1" Association="Self.fk_TipoXProducto_TipoComputadora1">
+      <End Role="tipocomputadora" EntitySet="tipocomputadora" />
+      <End Role="tipoxproducto" EntitySet="tipoxproducto" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
