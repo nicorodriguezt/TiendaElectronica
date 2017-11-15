@@ -1,0 +1,15 @@
+Login, persistencia de usuario  (cliente)
+
+Realizar una venta implica
+	crear presupuest
+	crear linea presupuesto que implica
+		Mostrar lista de productos (componentes)
+		buscar por nombre y por tipo
+		añadir un producto y/o eliminar
+		elegir cantidad
+		Calcular subtotal y devolver
+	Calcular un total a partir de los subtotales
+	Registrar venta
+
+Details ventas. 
+	
