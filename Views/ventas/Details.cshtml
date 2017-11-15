@@ -1,0 +1,41 @@
+﻿@model TiendaElectronica.venta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>venta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaVenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaVenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FacturaNro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FacturaNro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.presupuesto.idPresupuesto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.presupuesto.idPresupuesto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Volver a historial", "Historial")
+</p>
