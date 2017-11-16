@@ -16,7 +16,7 @@ namespace TiendaElectronica.Controllers
 
         // GET: ventas/Historial
 
-        public ActionResult Historial(int idCliente = 1)
+        public ActionResult Historial(int idCliente =1)
         {
             var venta = db.venta.Include(v => v.presupuesto);
             var presupuesto = db.presupuesto.SqlQuery("Select * from presupuesto where idCliente = @p0", idCliente).ToList();

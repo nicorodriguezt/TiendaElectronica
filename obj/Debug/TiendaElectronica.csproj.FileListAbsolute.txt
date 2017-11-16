@@ -108,7 +108,7 @@ D:\Leandro\Facultad\4to año\Diseño II\TiendaElectronica\TiendaElectronica\bin\
 D:\Leandro\Facultad\4to año\Diseño II\TiendaElectronica\TiendaElectronica\bin\es\System.Web.WebPages.resources.dll
 D:\Leandro\Facultad\4to año\Diseño II\TiendaElectronica\TiendaElectronica\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\Leandro\Facultad\4to año\Diseño II\TiendaElectronica\TiendaElectronica\bin\es\System.Web.WebPages.Razor.resources.dll
-D:\Leandro\Facultad\4to año\Diseño II\TiendaElectronica\TiendaElectronica\obj\Debug\TiendaElectronica.csprojResolveAssemblyReference.cache
 D:\Leandro\Facultad\4to año\Diseño II\TiendaElectronica\TiendaElectronica\obj\Debug\TiendaElectronica.csproj.CoreCompileInputs.cache
 D:\Leandro\Facultad\4to año\Diseño II\TiendaElectronica\TiendaElectronica\obj\Debug\TiendaElectronica.dll
 D:\Leandro\Facultad\4to año\Diseño II\TiendaElectronica\TiendaElectronica\obj\Debug\TiendaElectronica.pdb
+D:\Leandro\Facultad\4to año\Diseño II\TiendaElectronica\TiendaElectronica\obj\Debug\TiendaElectronica.csprojResolveAssemblyReference.cache

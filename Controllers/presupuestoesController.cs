@@ -15,9 +15,10 @@ namespace TiendaElectronica.Controllers
         private tiendaelectronicaEntities db = new tiendaelectronicaEntities();
 
         // GET: presupuestoes
-        public ActionResult Index()
+        public ActionResult Index(int idCliente = 1)
         {
-            var presupuesto = db.presupuesto.Include(p => p.cliente);
+            var presupuesto = db.presupuesto.Include(p => p.cliente);            
+            ViewBag.idCliente = idCliente;
             return View(presupuesto.ToList());
         }
 
