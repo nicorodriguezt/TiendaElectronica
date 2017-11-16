@@ -2,16 +2,16 @@
 
 @{
     ViewBag.Title = "Details";
+    ViewBag.idPresupuesto = Model.presupuesto.idPresupuesto;
 }
 
-<h2>Details</h2>
+<h2>Detalles de Compra</h2>
 
 <div>
-    <h4>venta</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FechaVenta)
+            Fecha: 
         </dt>
 
         <dd>
@@ -19,23 +19,24 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FacturaNro)
+            Numero de Factura: 
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.FacturaNro)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.presupuesto.idPresupuesto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.presupuesto.idPresupuesto)
-        </dd>
-
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Volver a historial", "Historial")
-</p>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <a class="btn btn-default" onclick="location.href='@Url.Action("Details", "presupuestoes", new { id = Model.IdPresupuesto })'">
+                Ir al presupuesto
+            </a>
+            <a class="btn btn-default" onclick="location.href='@Url.Action("Historial","ventas")'">
+                Volver
+            </a>
+        </div>      
+    </div> 
+

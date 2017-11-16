@@ -4,7 +4,7 @@
     ViewBag.Title = "Lista de Presupuestos";
 }
 
-<h2>Presupuestos</h2>
+<h3>Presupuestos Validos</h3>
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")
@@ -27,7 +27,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    if (item.IdCliente == ViewBag.idCliente)
+    if (item.IdCliente == ViewBag.idCliente && item.FechaFin>DateTime.Now)
     {
     <tr>
         <td>
@@ -40,10 +40,10 @@
             @Html.DisplayFor(modelItem => item.FechaFin)
         </td>
         <td>
-            No implementado
+            no implementado
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.idPresupuesto }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.idPresupuesto, idCliente=ViewBag.idCliente }) |
             @Html.ActionLink("Details", "Details", new { id = item.idPresupuesto }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.idPresupuesto })
         </td>
@@ -51,5 +51,53 @@
     }
 
 }
+
+</table>
+<h2></h2>
+<h2></h2>
+<h3>Presupuestos Vencidos</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            Presupuesto Numero
+        </th>
+        <th>
+            Fecha realizado
+        </th>
+        <th>
+            Fecha caducidad
+        </th>
+        <th>
+            Total
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.IdCliente == ViewBag.idCliente && item.FechaFin < DateTime.Now)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PresupuestoNro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaRealizado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFin)
+                </td>
+                <td>
+                    No implementado
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.idPresupuesto }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.idPresupuesto }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.idPresupuesto })
+                </td>
+            </tr>
+        }
+
+    }
 
 </table>

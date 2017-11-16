@@ -72,7 +72,7 @@ namespace TiendaElectronica.Controllers
         }
 
         // GET: ventas/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int? idCliente)
         {
             if (id == null)
             {
@@ -84,6 +84,7 @@ namespace TiendaElectronica.Controllers
                 return HttpNotFound();
             }
             ViewBag.IdPresupuesto = new SelectList(db.presupuesto, "idPresupuesto", "idPresupuesto", venta.IdPresupuesto);
+            ViewBag.idCliente = idCliente;
             return View(venta);
         }
 

@@ -304,6 +304,7 @@
     <Content Include="Views\ventas\Edit.cshtml" />
     <Content Include="Views\ventas\Index.cshtml" />
     <Content Include="Views\ventas\Historial.cshtml" />
+    <Content Include="Views\lineapresupuestoes\lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,9 +14,18 @@ namespace TiendaElectronica.Controllers
     {
         private tiendaelectronicaEntities db = new tiendaelectronicaEntities();
 
-        // GET: lineapresupuestoes
-        public ActionResult Index()
+        // GET: lineapresupuestoes/lista
+        public ActionResult lista(int? id)
         {
+            ViewBag.idPresupuesto = id;
+            var lineapresupuesto = db.lineapresupuesto.Include(l => l.presupuesto).Include(l => l.producto);
+            return View(lineapresupuesto.ToList());
+        }
+
+        // GET: lineapresupuestoes
+        public ActionResult Index(int? id)
+        {
+            
             var lineapresupuesto = db.lineapresupuesto.Include(l => l.presupuesto).Include(l => l.producto);
             return View(lineapresupuesto.ToList());
         }

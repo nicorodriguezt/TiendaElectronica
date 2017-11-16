@@ -15,7 +15,7 @@ namespace TiendaElectronica.Controllers
         private tiendaelectronicaEntities db = new tiendaelectronicaEntities();
 
         // GET: presupuestoes
-        public ActionResult Index(int idCliente = 1)
+        public ActionResult Index(int? id, int idCliente = 1)
         {
             var presupuesto = db.presupuesto.Include(p => p.cliente);            
             ViewBag.idCliente = idCliente;
@@ -25,6 +25,7 @@ namespace TiendaElectronica.Controllers
         // GET: presupuestoes/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.idPresupuesto = id;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

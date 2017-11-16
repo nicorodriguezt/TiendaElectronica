@@ -4,14 +4,21 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+
 
 <div>
-    <h4>lineapresupuesto</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.PrecioUnit)
+            Producto: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.producto.Nombre)
+        </dd>
+        <dt>
+            Precio Unitario:
         </dt>
 
         <dd>
@@ -19,32 +26,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Cantidad)
+            Cantidad: 
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Cantidad)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.presupuesto.idPresupuesto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.presupuesto.idPresupuesto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.producto.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.producto.Nombre)
-        </dd>
+        
+        
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idLineaPresupuesto }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver", "lista", new { id = Model.idPresupuesto })
 </p>

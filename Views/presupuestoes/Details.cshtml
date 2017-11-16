@@ -4,14 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>presupuesto</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.PresupuestoNro)
+            Presupuesto N°: 
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechaRealizado)
+            Fecha realizado: 
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechaFin)
+            Fecha caducidad: 
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cliente.RazonSocial)
+            Cliente: 
         </dt>
 
         <dd>
@@ -44,7 +44,14 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idPresupuesto }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <a class="btn btn-default" onclick="location.href='@Url.Action("lista", "lineapresupuestoes", new { id = ViewBag.idPresupuesto })'">
+            Detalles
+        </a>
+        <a class="btn btn-default" onclick="location.href='@Url.Action("Historial","ventas")'">
+            Volver 
+        </a>
+    </div>
+</div> 

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Historial";
+
 }
 
 <h2>Compras</h2>
@@ -20,12 +21,15 @@
         <th></th>
     </tr>
 
+
+
     @foreach (var item in Model)
     {
         foreach (var p in ViewBag.presupuesto)
         {
             if (item.IdPresupuesto == p.idPresupuesto)
             {
+                
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.FechaVenta)
@@ -37,7 +41,7 @@
                         @Html.DisplayFor(modelItem => item.presupuesto.PresupuestoNro)
                     </td>
                     <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.idVenta }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.idVenta }) 
                     </td>
                 </tr>
             }
