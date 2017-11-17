@@ -31,7 +31,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <a class="btn btn-default" onclick="location.href='@Url.Action("Details", "presupuestoes", new { id = Model.IdPresupuesto, idCliente = ViewBag.idCliente } )'">
+            <a class="btn btn-default" onclick="location.href='@Url.Action("DetailsCompra", "presupuestoes", new { id = Model.IdPresupuesto, idCliente = ViewBag.idCliente } )'">
                 Ir al presupuesto
             </a>
             <a class="btn btn-default" onclick="location.href='@Url.Action("Historial","ventas", new { idCliente = ViewBag.idCliente })'">

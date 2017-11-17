@@ -75,7 +75,7 @@ namespace TiendaElectronica.Controllers
             {
                 db.presupuesto.Add(presupuesto);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { idCliente = presupuesto.IdCliente});
             }
 
             ViewBag.IdCliente = new SelectList(db.cliente, "idCliente", "RazonSocial", presupuesto.IdCliente);
@@ -138,9 +138,17 @@ namespace TiendaElectronica.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             presupuesto presupuesto = db.presupuesto.Find(id);
+            var queryLineas = (from l in db.lineapresupuesto
+                              where l.idPresupuesto == presupuesto.idPresupuesto
+                              select l).ToList();
+            foreach(var l in queryLineas)
+            {
+                db.lineapresupuesto.Remove(l);
+            }
             db.presupuesto.Remove(presupuesto);
+            
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { idCliente = presupuesto.IdCliente});
         }
 
         protected override void Dispose(bool disposing)

@@ -40,7 +40,7 @@
         </td>
         <td>
             @Html.ActionLink("Modificar", "Edit", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) |
-            @Html.ActionLink("Detalles", "DetailsCompra", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) |
             @Html.ActionLink("Eliminar", "Delete", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente })
         </td>
     </tr>
@@ -82,7 +82,7 @@
                     @Html.DisplayFor(modelItem => item.FechaFin)
                 </td>
                 <td>
-                    @Html.ActionLink("Detalles", "DetailsCompra", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) 
+                    @Html.ActionLink("Detalles", "Details", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) 
                 </td>
             </tr>
             }

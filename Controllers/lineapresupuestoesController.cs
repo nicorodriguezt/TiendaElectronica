@@ -15,17 +15,18 @@ namespace TiendaElectronica.Controllers
         private tiendaelectronicaEntities db = new tiendaelectronicaEntities();
 
         // GET: lineapresupuestoes/lista
-        public ActionResult lista(int? id)
+        public ActionResult lista(int? idPresupuesto)
         {
-            
+            ViewBag.idPresupuesto = idPresupuesto;
             var lineapresupuesto = db.lineapresupuesto.Include(l => l.presupuesto).Include(l => l.producto);
             return View(lineapresupuesto.ToList());
         }
 
         // GET: lineapresupuestoes
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? idCliente,int? idPresupuesto)
         {
-            ViewBag.idPresupuesto = id;
+            ViewBag.idCliente = idCliente;
+            ViewBag.idPresupuesto = idPresupuesto;
             var lineapresupuesto = db.lineapresupuesto.Include(l => l.presupuesto).Include(l => l.producto);
             return View(lineapresupuesto.ToList());
         }
@@ -46,9 +47,11 @@ namespace TiendaElectronica.Controllers
         }
 
         // GET: lineapresupuestoes/Create
-        public ActionResult Create()
+        public ActionResult Create(int? idCliente, int? idPresupuesto)
         {
-            ViewBag.idPresupuesto = new SelectList(db.presupuesto, "idPresupuesto", "idPresupuesto");
+            ViewBag.idCliente = idCliente;
+            ViewBag.idPresupuesto = idPresupuesto;
+            ViewBag.Presupuesto = new SelectList(db.presupuesto.Where(p=>p.idPresupuesto==idPresupuesto), "idPresupuesto", "PresupuestoNro");
             ViewBag.idProducto = new SelectList(db.producto, "idProducto", "Nombre");
             return View();
         }
@@ -58,13 +61,13 @@ namespace TiendaElectronica.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idLineaPresupuesto,idPresupuesto,idProducto,PrecioUnit,Cantidad")] lineapresupuesto lineapresupuesto)
+        public ActionResult Create([Bind(Include = "idLineaPresupuesto,idPresupuesto,idProducto,PrecioUnit,Cantidad")] lineapresupuesto lineapresupuesto, int? idCliente)
         {
             if (ModelState.IsValid)
             {
                 db.lineapresupuesto.Add(lineapresupuesto);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { idCliente = idCliente, idPresupuesto = lineapresupuesto.idPresupuesto });
             }
 
             ViewBag.idPresupuesto = new SelectList(db.presupuesto, "idPresupuesto", "idPresupuesto", lineapresupuesto.idPresupuesto);
@@ -108,8 +111,9 @@ namespace TiendaElectronica.Controllers
         }
 
         // GET: lineapresupuestoes/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, int? idCliente)
         {
+            ViewBag.idCliente = idCliente;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -125,12 +129,12 @@ namespace TiendaElectronica.Controllers
         // POST: lineapresupuestoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, int? idCliente)
         {
             lineapresupuesto lineapresupuesto = db.lineapresupuesto.Find(id);
             db.lineapresupuesto.Remove(lineapresupuesto);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { idCliente = idCliente, idPresupuesto = lineapresupuesto.idPresupuesto });
         }
 
         protected override void Dispose(bool disposing)

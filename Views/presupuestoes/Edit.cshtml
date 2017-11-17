@@ -53,9 +53,9 @@
                 <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
             <div class="col-md-offset-2 col-md-11">
-                    <a class="btn btn-default" onclick="location.href='@Url.Action("lista", "lineapresupuestoes", new { id = ViewBag.idPresupuesto })'">
-                        Agregar Producto
-                    </a>
+                <a class="btn btn-default" onclick="location.href='@Url.Action("index", "lineapresupuestoes", new { idCliente= Model.IdCliente, idPresupuesto = Model.idPresupuesto })'">
+                    Agregar componentes
+                </a>
                 </div>
             </div> 
         </div>
