@@ -20,6 +20,9 @@
         <th>
             Fecha caducidad
         </th>
+        <th>
+            Monto
+        </th>
         <th></th>
     </tr>
 
@@ -39,6 +42,10 @@
             @Html.DisplayFor(modelItem => item.FechaFin)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.subtotal)
+        </td>
+        <td>
+            @Html.ActionLink("Comprar", "Create", "ventas", new { idPresupuesto = item.idPresupuesto, idCliente = ViewBag.idCliente },null) |
             @Html.ActionLink("Modificar", "Edit", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) |
             @Html.ActionLink("Detalles", "Details", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) |
             @Html.ActionLink("Eliminar", "Delete", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente })
@@ -62,6 +69,9 @@
         <th>
             Fecha caducidad
         </th>
+        <th>
+            Monto 
+        </th>
         <th></th>
     </tr>
 
@@ -80,6 +90,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FechaFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subtotal)
                 </td>
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) 

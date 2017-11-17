@@ -173,6 +173,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\lineapresupuestoesController.cs" />
     <Compile Include="Controllers\presupuestoesController.cs" />
+    <Compile Include="Controllers\productoesController.cs" />
     <Compile Include="Controllers\ventasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -353,6 +354,12 @@
     <Content Include="Views\ventas\Historial.cshtml" />
     <Content Include="Views\lineapresupuestoes\lista.cshtml" />
     <Content Include="Views\presupuestoes\DetailsCompra.cshtml" />
+    <Content Include="Views\productoes\Create.cshtml" />
+    <Content Include="Views\productoes\Delete.cshtml" />
+    <Content Include="Views\productoes\Details.cshtml" />
+    <Content Include="Views\productoes\Edit.cshtml" />
+    <Content Include="Views\productoes\Index.cshtml" />
+    <Content Include="Views\productoes\Lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

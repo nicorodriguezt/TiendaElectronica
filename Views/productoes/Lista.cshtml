@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TiendaElectronica.producto>
+
+<h1>Nuestros Productos</h1>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Precio
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>        
+        <td>
+        </td>
+    </tr>
+}
+
+</table>

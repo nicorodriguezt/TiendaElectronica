@@ -48,9 +48,11 @@ namespace TiendaElectronica.Controllers
         }
 
         // GET: ventas/Create
-        public ActionResult Create()
+        public ActionResult Create(int? idPresupuesto, int? idCliente)
         {
-            ViewBag.IdPresupuesto = new SelectList(db.presupuesto, "idPresupuesto", "idPresupuesto");
+            ViewBag.idCliente = idCliente;
+            ViewBag.idPresupuesto = idPresupuesto;
+            ViewBag.Presupuesto = new SelectList(db.presupuesto.Where(p => p.idPresupuesto == idPresupuesto), "idPresupuesto", "PresupuestoNro");
             return View();
         }
 
@@ -59,13 +61,28 @@ namespace TiendaElectronica.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idVenta,FechaVenta,IdPresupuesto,FacturaNro")] venta venta)
+        public ActionResult Create([Bind(Include = "idVenta,FechaVenta,IdPresupuesto,FacturaNro")] venta venta, int? idCliente)
         {
             if (ModelState.IsValid)
             {
+                
+                int idVenta = 1;
+                var idVen = (from v in db.venta
+                             where v.idVenta == idVenta
+                             select v.idVenta);
+
+                while (idVen.Any())
+                {
+                    idVen = from v in db.venta
+                            where v.idVenta == idVenta
+                            select v.idVenta;
+                    idVenta++;
+                }
+
+                venta.idVenta = idVenta;
                 db.venta.Add(venta);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Historial", new { idCliente = idCliente });
             }
 
             ViewBag.IdPresupuesto = new SelectList(db.presupuesto, "idPresupuesto", "idPresupuesto", venta.IdPresupuesto);
