@@ -41,7 +41,7 @@
                         @Html.DisplayFor(modelItem => item.presupuesto.subtotal)
                     </td>
                     <td>
-                        @Html.ActionLink("Detalles", "Details", new { id = item.idVenta }) 
+                        @Html.ActionLink("Detalles", "Details", new { id = item.idVenta, idCliente = ViewBag.idCliente }) 
                     </td>
                 </tr>
             }

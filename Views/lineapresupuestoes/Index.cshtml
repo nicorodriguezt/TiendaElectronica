@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Componentes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -27,6 +27,8 @@
     </tr>
 
 @foreach (var item in Model) {
+    if (item.idPresupuesto == ViewBag.idPresupuesto)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.PrecioUnit)
@@ -41,11 +43,12 @@
             @Html.DisplayFor(modelItem => item.producto.Nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idLineaPresupuesto }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idLineaPresupuesto }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idLineaPresupuesto })
+            @Html.ActionLink("Edit", "Edit", new { id = item.idLineaPresupuesto }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idLineaPresupuesto }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idLineaPresupuesto })
         </td>
     </tr>
+    }
 }
 
 </table>

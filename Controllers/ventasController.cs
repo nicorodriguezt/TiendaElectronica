@@ -16,7 +16,7 @@ namespace TiendaElectronica.Controllers
 
         // GET: ventas/Historial
 
-        public ActionResult Historial(int idCliente =1)
+        public ActionResult Historial(int? idCliente)
         {
             var venta = db.venta.Include(v => v.presupuesto);
             var presupuesto = db.presupuesto.SqlQuery("Select * from presupuesto where idCliente = @p0", idCliente).ToList();
@@ -32,8 +32,9 @@ namespace TiendaElectronica.Controllers
         }
 
         // GET: ventas/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? idCliente)
         {
+            ViewBag.idCliente = idCliente;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

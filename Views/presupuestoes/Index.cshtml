@@ -7,7 +7,7 @@
 <h3>Presupuesto Valido</h3>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { idCliente = ViewBag.idCliente })
+    @Html.ActionLink("Crear nuevo presupuesto", "Create", new { idCliente = ViewBag.idCliente })
 </p>
 <table class="table">
     <tr>
@@ -24,8 +24,10 @@
     </tr>
 
 @foreach (var item in Model) {
-    if (item.FechaFin >= DateTime.Now)
+    if (item.IdCliente == ViewBag.idCliente)
     {
+        if (item.FechaFin >= DateTime.Now)
+        {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.PresupuestoNro)
@@ -37,11 +39,12 @@
             @Html.DisplayFor(modelItem => item.FechaFin)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.idPresupuesto }) |
-            @Html.ActionLink("Details", "Details", new { id = item.idPresupuesto }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.idPresupuesto })
+            @Html.ActionLink("Modificar", "Edit", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) |
+            @Html.ActionLink("Detalles", "DetailsCompra", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente })
         </td>
     </tr>
+        }
     }
 }
 
@@ -64,8 +67,10 @@
 
     @foreach (var item in Model)
     {
-        if (item.FechaFin < DateTime.Now)
+        if (item.IdCliente == ViewBag.idCliente)
         {
+            if (item.FechaFin < DateTime.Now)
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.PresupuestoNro)
@@ -77,9 +82,10 @@
                     @Html.DisplayFor(modelItem => item.FechaFin)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "DetailsCompra", new { id = item.idPresupuesto }) 
+                    @Html.ActionLink("Detalles", "DetailsCompra", new { id = item.idPresupuesto, idCliente = ViewBag.idCliente }) 
                 </td>
             </tr>
+            }
         }
     }
 

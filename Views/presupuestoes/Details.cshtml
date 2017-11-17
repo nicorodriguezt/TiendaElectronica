@@ -49,7 +49,7 @@
         <a class="btn btn-default" onclick="location.href='@Url.Action("lista", "lineapresupuestoes", new { id = ViewBag.idPresupuesto })'">
             Detalles
         </a>
-        <a class="btn btn-default" onclick="location.href='@Url.Action("Historial","ventas")'">
+        <a class="btn btn-default" onclick="location.href='@Url.Action("Historial","ventas", new { idCliente = ViewBag.idCliente})'">
             Volver
         </a>
     </div>

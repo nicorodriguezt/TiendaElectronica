@@ -17,7 +17,7 @@ namespace TiendaElectronica.Controllers
         // GET: lineapresupuestoes/lista
         public ActionResult lista(int? id)
         {
-            ViewBag.idPresupuesto = id;
+            
             var lineapresupuesto = db.lineapresupuesto.Include(l => l.presupuesto).Include(l => l.producto);
             return View(lineapresupuesto.ToList());
         }
@@ -25,7 +25,7 @@ namespace TiendaElectronica.Controllers
         // GET: lineapresupuestoes
         public ActionResult Index(int? id)
         {
-            
+            ViewBag.idPresupuesto = id;
             var lineapresupuesto = db.lineapresupuesto.Include(l => l.presupuesto).Include(l => l.producto);
             return View(lineapresupuesto.ToList());
         }

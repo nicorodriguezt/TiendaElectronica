@@ -15,7 +15,7 @@ namespace TiendaElectronica.Controllers
         private tiendaelectronicaEntities db = new tiendaelectronicaEntities();
 
         // GET: presupuestoes
-        public ActionResult Index(int? id, int idCliente = 1)
+        public ActionResult Index(int? id, int? idCliente)
         {
             var presupuesto = db.presupuesto.Include(p => p.cliente);            
             ViewBag.idCliente = idCliente;
@@ -23,9 +23,10 @@ namespace TiendaElectronica.Controllers
         }
 
         // GET: presupuestoes/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? idCliente)
         {
             ViewBag.idPresupuesto = id;
+            ViewBag.idCliente = idCliente;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,9 +40,10 @@ namespace TiendaElectronica.Controllers
         }
 
         // GET: presupuestoes/DetailsCompra/5
-        public ActionResult DetailsCompra(int? id)
+        public ActionResult DetailsCompra(int? id, int? idCliente)
         {
             ViewBag.idPresupuesto = id;
+            ViewBag.idCliente = idCliente;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -57,7 +59,8 @@ namespace TiendaElectronica.Controllers
         // GET: presupuestoes/Create
         public ActionResult Create(int? idCliente)
         {
-            ViewBag.IdCliente = new SelectList(db.cliente.Where(c => c.idCliente==idCliente), "idCliente", "RazonSocial");
+            ViewBag.idCliente = idCliente;
+            ViewBag.Cliente = new SelectList(db.cliente.Where(c => c.idCliente==idCliente), "idCliente", "RazonSocial");
             return View();
         }
 
@@ -80,8 +83,9 @@ namespace TiendaElectronica.Controllers
         }
 
         // GET: presupuestoes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int? idCliente)
         {
+            ViewBag.idCliente = idCliente;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -91,7 +95,7 @@ namespace TiendaElectronica.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdCliente = new SelectList(db.cliente, "idCliente", "RazonSocial", presupuesto.IdCliente);
+            ViewBag.Cliente = new SelectList(db.cliente.Where(c => c.idCliente == idCliente), "idCliente", "RazonSocial");
             return View(presupuesto);
         }
 
@@ -106,15 +110,16 @@ namespace TiendaElectronica.Controllers
             {
                 db.Entry(presupuesto).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index",new { idCliente = presupuesto.IdCliente});
             }
             ViewBag.IdCliente = new SelectList(db.cliente, "idCliente", "RazonSocial", presupuesto.IdCliente);
             return View(presupuesto);
         }
 
         // GET: presupuestoes/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, int? idCliente)
         {
+            ViewBag.idCliente = idCliente;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
