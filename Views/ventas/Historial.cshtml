@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Historial";
-
 }
 
 <h2>Compras</h2>
@@ -13,11 +12,12 @@
             Fecha de venta
         </th>
         <th>
-            Numero de factura
-        </th>
-        <th>
             Numero de presupuesto
         </th>
+        <th>
+            Monto total
+        </th>
+
         <th></th>
     </tr>
 
@@ -29,16 +29,16 @@
         {
             if (item.IdPresupuesto == p.idPresupuesto)
             {
-                
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.FechaVenta)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FacturaNro)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.presupuesto.PresupuestoNro)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.presupuesto.subtotal)
                     </td>
                     <td>
                         @Html.ActionLink("Detalles", "Details", new { id = item.idVenta }) 

@@ -38,6 +38,22 @@ namespace TiendaElectronica.Controllers
             return View(presupuesto);
         }
 
+        // GET: presupuestoes/DetailsCompra/5
+        public ActionResult DetailsCompra(int? id)
+        {
+            ViewBag.idPresupuesto = id;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            presupuesto presupuesto = db.presupuesto.Find(id);
+            if (presupuesto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(presupuesto);
+        }
+
         // GET: presupuestoes/Create
         public ActionResult Create()
         {

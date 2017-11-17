@@ -195,6 +195,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\lineapresupuesto.cs" />
+    <Compile Include="Models\presupuesto.cs" />
     <Compile Include="presupuesto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -305,10 +307,10 @@
     <Content Include="Views\ventas\Index.cshtml" />
     <Content Include="Views\ventas\Historial.cshtml" />
     <Content Include="Views\lineapresupuestoes\lista.cshtml" />
+    <Content Include="Views\presupuestoes\DetailsCompra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

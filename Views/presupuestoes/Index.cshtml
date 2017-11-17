@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<TiendaElectronica.presupuesto>
 
 @{
-    ViewBag.Title = "Lista de Presupuestos";
+    ViewBag.Title = "Index";
 }
 
-<h3>Presupuestos Validos</h3>
+<h3>Presupuesto Valido</h3>
 
 <p>
-    @Html.ActionLink("Crear Nuevo", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Presupuesto Numero
+            Numero Presupuesto
         </th>
         <th>
             Fecha realizado
@@ -20,14 +20,11 @@
         <th>
             Fecha caducidad
         </th>
-        <th>
-            Total
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    if (item.IdCliente == ViewBag.idCliente && item.FechaFin>DateTime.Now)
+    if (item.FechaFin >= DateTime.Now)
     {
     <tr>
         <td>
@@ -40,27 +37,21 @@
             @Html.DisplayFor(modelItem => item.FechaFin)
         </td>
         <td>
-            no implementado
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.idPresupuesto, idCliente=ViewBag.idCliente }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.idPresupuesto }) |
             @Html.ActionLink("Details", "Details", new { id = item.idPresupuesto }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.idPresupuesto })
         </td>
     </tr>
     }
-
 }
 
 </table>
-<h2></h2>
-<h2></h2>
-<h3>Presupuestos Vencidos</h3>
 
+<h3>Presupuesto Vencido</h3>
 <table class="table">
     <tr>
         <th>
-            Presupuesto Numero
+            Numero Presupuesto
         </th>
         <th>
             Fecha realizado
@@ -68,14 +59,12 @@
         <th>
             Fecha caducidad
         </th>
-        <th>
-            Total
-        </th>
         <th></th>
     </tr>
+
     @foreach (var item in Model)
     {
-        if (item.IdCliente == ViewBag.idCliente && item.FechaFin < DateTime.Now)
+        if (item.FechaFin < DateTime.Now)
         {
             <tr>
                 <td>
@@ -88,16 +77,10 @@
                     @Html.DisplayFor(modelItem => item.FechaFin)
                 </td>
                 <td>
-                    No implementado
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.idPresupuesto }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.idPresupuesto }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.idPresupuesto })
+                    @Html.ActionLink("Details", "DetailsCompra", new { id = item.idPresupuesto }) 
                 </td>
             </tr>
         }
-
     }
 
 </table>
