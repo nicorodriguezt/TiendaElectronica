@@ -55,9 +55,9 @@ namespace TiendaElectronica.Controllers
         }
 
         // GET: presupuestoes/Create
-        public ActionResult Create()
+        public ActionResult Create(int? idCliente)
         {
-            ViewBag.IdCliente = new SelectList(db.cliente, "idCliente", "RazonSocial");
+            ViewBag.IdCliente = new SelectList(db.cliente.Where(c => c.idCliente==idCliente), "idCliente", "RazonSocial");
             return View();
         }
 
